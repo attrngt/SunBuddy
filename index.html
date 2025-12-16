@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SunBuddy - Your Daily Buddy</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>SunBuddy</h1>
+      <p>Your Daily Buddy – SPF 50 PA++ Sunscreen</p>
+    </header>
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-logo"><i class="fas fa-sun"></i> SunBuddy</div>
+        <div class="navbar-menu">
+          <a href="#section-products" class="navbar-link">Products</a>
+          <a href="#section-skincheck" class="navbar-link">Skincheck</a>
+          <a href="#section-wheel" class="navbar-link">Spin Wheel</a>
+          <a
+            href="https://instagram.com/sunbuddy.id"
+            target="_blank"
+            class="navbar-link"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="section" id="section-products">
+      <h2>Product Showcase</h2>
+      <div class="products">
+        <div class="card">
+          <div class="card-image" onclick="openImageModal(this)">
+            <img src="img/all.png" alt="All Skin Type" />
+          </div>
+          <h3>All Skin Type</h3>
+          <p>Daily protection for everyone</p>
+        </div>
+        <div class="card">
+          <div class="card-image" onclick="openImageModal(this)">
+            <img src="img/dry.png" alt="Dry Skin" />
+          </div>
+          <h3>Dry Skin</h3>
+          <p>Extra hydration & comfort</p>
+        </div>
+        <div class="card">
+          <div class="card-image" onclick="openImageModal(this)">
+            <img src="img/oily.png" alt="Oily Skin" />
+          </div>
+          <h3>Oily Skin</h3>
+          <p>Lightweight & anti-shine</p>
+        </div>
+        <div class="card">
+          <div class="card-image" onclick="openImageModal(this)">
+            <img src="img/sensitive.png" alt="Sensitive Skin" />
+          </div>
+          <h3>Sensitive Skin</h3>
+          <p>Gentle & calming formula</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section interactive" id="section-skincheck">
+      <div class="skincheck-container">
+        <h2>Skincheck Experience</h2>
+        <div class="quiz">
+          <p>Bagaimana kondisi kulitmu hari ini?</p>
+          <button onclick="setResult('Dry Skin')">Kering</button>
+          <button onclick="setResult('Oily Skin')">Berminyak</button>
+          <button onclick="setResult('Sensitive Skin')">Sensitif</button>
+          <button onclick="setResult('All Skin Type')">Normal</button>
+          <p id="quizResult" class="result"></p>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="animation-box"> -->
+        <div class="uv-realtime">
+          <h3>Realtime UV Index</h3>
+          <p id="uvLocation">Mendeteksi lokasi...</p>
+          <p id="uvValue">UV: -</p>
+          <p id="uvStatus"></p>
+        </div>
+      </div>
+       <div class="clouds">
+          <span class="cloud cloud1"></span>
+          <span class="cloud cloud2"></span>
+          <span class="cloud cloud3"></span>
+          <span class="cloud cloud4"></span>
+        </div>
+    </section>
+
+    <section class="section" id="section-wheel">
+      <h2>TAP TO SPIN</h2>
+      <div class="wheel-container">
+        <div class="pointer"></div>
+        <div id="wheel" onclick="spinWheel()"></div>
+      </div>
+      <!-- <button >Putar Sekarang</button> -->
+      <p id="spinResult" class="result"></p>
+    </section>
+
+    <!-- Modal Pop-up untuk Gambar Produk -->
+    <div id="imageModal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <img id="modalImage" src="" alt="Product Image" />
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Follow us on Instagram
+        <a
+          class="ig"
+          href="https://instagram.com/sunbuddy.id"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fab fa-instagram"></i> sunbuddy.id</a
+        >
+      </p>
+      <p>© 2025 SunBuddy</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
