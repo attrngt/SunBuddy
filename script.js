@@ -43,12 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // EDIT REWARDS DI SINI
 // ===============================
 const rewards = [
-  "Free Sample",
   "Sticker",
   "Keychain",
-  "Try Again",
-  "Coklat",
-  "Surya",
+  "+1",
+  "carambol",
 ];
 
 let rotation = 0;
