@@ -95,15 +95,21 @@
         </div>
     </section>
 
-    <section class="section" id="section-wheel">
-      <h2>TAP TO SPIN</h2>
-      <div class="wheel-container">
-        <div class="pointer"></div>
-        <div id="wheel" onclick="spinWheel()"></div>
-      </div>
-      <!-- <button >Putar Sekarang</button> -->
-      <p id="spinResult" class="result"></p>
-    </section>
+<section class="section" id="section-wheel">
+  <h2>TAP TO SPIN</h2>
+
+  <button class="fullscreen-wheel-btn" onclick="toggleWheelFullscreen()">
+    ⛶ Fullscreen Spin
+  </button>
+
+  <div class="wheel-container">
+    <div class="pointer"></div>
+    <div id="wheel" onclick="spinWheel()"></div>
+  </div>
+
+  <p id="spinResult" class="result"></p>
+</section>
+
 
     <!-- Modal Pop-up untuk Gambar Produk -->
     <div id="imageModal" class="modal">

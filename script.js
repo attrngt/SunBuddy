@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // ===============================
 const rewards = [
   "Sticker",
-  "Keychain",
+  "Permen",
   "+1",
-  "carambol",
+  "Carambol",
 ];
 
 let rotation = 0;
@@ -107,7 +107,7 @@ function displayRewards() {
     label.style.left = `calc(50% + ${x}px)`;
     label.style.top = `calc(50% + ${y}px)`;
     label.style.transform = "translate(-50%, -50%)";
-    label.innerText = reward;
+    label.innerText = reward.toUpperCase();
 
     wheel.appendChild(label);
   });
@@ -235,3 +235,22 @@ navigator.geolocation.getCurrentPosition(
     document.getElementById("uvLocation").innerText = "Izin lokasi ditolak";
   }
 );
+
+
+function toggleWheelFullscreen() {
+  const wheelSection = document.getElementById("section-wheel");
+
+  if (!document.fullscreenElement) {
+    if (wheelSection.requestFullscreen) {
+      wheelSection.requestFullscreen();
+    } else if (wheelSection.webkitRequestFullscreen) {
+      wheelSection.webkitRequestFullscreen(); // Safari
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+}
