@@ -565,3 +565,21 @@ footer a {
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   letter-spacing: 1px;
 }
+.mobile-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #fff6e9, #ffd08a);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.exit-fullscreen {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10000;
+}

@@ -237,20 +237,38 @@ navigator.geolocation.getCurrentPosition(
 );
 
 
-function toggleWheelFullscreen() {
-  const wheelSection = document.getElementById("section-wheel");
+// function toggleWheelFullscreen() {
+//   const wheelSection = document.getElementById("section-wheel");
 
+//   if (!document.fullscreenElement) {
+//     if (wheelSection.requestFullscreen) {
+//       wheelSection.requestFullscreen();
+//     } else if (wheelSection.webkitRequestFullscreen) {
+//       wheelSection.webkitRequestFullscreen(); // Safari
+//     }
+//   } else {
+//     if (document.exitFullscreen) {
+//       document.exitFullscreen();
+//     } else if (document.webkitExitFullscreen) {
+//       document.webkitExitFullscreen();
+//     }
+//   }
+// }
+function toggleWheelFullscreen() {
+  const section = document.getElementById("section-wheel");
+
+  if (window.innerWidth <= 768) {
+    section.classList.toggle("mobile-fullscreen");
+    document.body.style.overflow = section.classList.contains("mobile-fullscreen")
+      ? "hidden"
+      : "";
+    return;
+  }
+
+  // desktop fullscreen
   if (!document.fullscreenElement) {
-    if (wheelSection.requestFullscreen) {
-      wheelSection.requestFullscreen();
-    } else if (wheelSection.webkitRequestFullscreen) {
-      wheelSection.webkitRequestFullscreen(); // Safari
-    }
+    section.requestFullscreen();
   } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }
+    document.exitFullscreen();
   }
 }
