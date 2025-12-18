@@ -264,7 +264,6 @@ h2 {
   }
 }
 
-
 .uv-realtime {
   background: #fff;
   padding: 20px;
@@ -320,12 +319,12 @@ h2 {
   left: -200px;
   animation: cloudMove 30s linear infinite;
 }
-.cloud3{
+.cloud3 {
   top: 250px;
   right: 150px;
   animation: cloudMove2 30s linear infinite;
 }
-.cloud4{
+.cloud4 {
   top: 80px;
   right: 100px;
   animation: cloudMove2 40s linear infinite;
@@ -400,14 +399,12 @@ button:active {
   border-radius: 50%;
   border: 10px solid var(--orange);
   position: relative;
-  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 1),
-              width 0.4s ease,
-              height 0.4s ease;
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 1), width 0.4s ease,
+    height 0.4s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 #wheel::after {
   content: "";
@@ -515,8 +512,6 @@ footer a {
   animation: fadeOut 0.3s ease-in forwards;
 }
 
-
-
 #section-wheel:fullscreen,
 #section-wheel:-webkit-full-screen {
   width: 100vw;
@@ -562,7 +557,7 @@ footer a {
   border-radius: 28px;
 }
 #section-wheel:fullscreen #spinResult {
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
   letter-spacing: 1px;
 }
 .mobile-fullscreen {
@@ -578,7 +573,7 @@ footer a {
   align-items: center;
 }
 .exit-fullscreen {
-  display: none;          /* ⬅️ INI KUNCI UTAMA */
+  display: none; /* ⬅️ INI KUNCI UTAMA */
   position: fixed;
   top: 15px;
   right: 15px;

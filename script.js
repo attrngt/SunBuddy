@@ -43,7 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // EDIT REWARDS DI SINI
 // ===============================
 const rewards = [
-  "Sticker",
+  "1 Sticker",
+  "2 Sticker",
+  "Zonk",
   "Permen",
   "+1",
   "Carambol",
@@ -112,6 +114,84 @@ function displayRewards() {
     wheel.appendChild(label);
   });
 }
+// function spinWheel() {
+//   const wheel = document.getElementById("wheel");
+//   const spinResult = document.getElementById("spinResult");
+//   const segment = 360 / rewards.length;
+
+//   spinResult.classList.remove("show");
+
+//   // spin realistis
+//   const extraSpin = Math.floor(Math.random() * 360) + 1440;
+//   rotation += extraSpin;
+
+//   wheel.style.transform = `rotate(${rotation}deg)`;
+
+//   setTimeout(() => {
+//     // derajat akhir wheel
+//     const finalDeg = ((rotation % 360) + 360) % 360;
+
+//     /**
+//      * LOGIKA FINAL:
+//      * - Panah di 0° (atas)
+//      * - Wheel muter searah jarum jam
+//      * - Segment ke-i berada di:
+//      *   i * segment  → (i+1)*segment
+//      */
+//     const index = Math.floor((360 - finalDeg) / segment) % rewards.length;
+
+//     spinResult.innerText = rewards[index];
+//     spinResult.classList.add("show");
+
+//     // Fungsi untuk hide dengan animasi
+//     const hideNotification = () => {
+//       spinResult.classList.add("hide");
+//       setTimeout(() => {
+//         spinResult.classList.remove("show");
+//         spinResult.classList.remove("hide");
+//       }, 300);
+//     };
+
+//     // Auto-hide setelah 4 detik
+//     const hideTimer = setTimeout(() => {
+//       hideNotification();
+//     }, 4000);
+
+//     // Hide saat diklik area lain
+//     const closeOnClick = (e) => {
+//       // Jangan tutup jika klik di pop notification sendiri atau di wheel
+//       if (!spinResult.contains(e.target) && !wheel.contains(e.target)) {
+//         hideNotification();
+//         clearTimeout(hideTimer);
+//         document.removeEventListener("click", closeOnClick);
+//       }
+//     };
+
+//     document.addEventListener("click", closeOnClick);
+//   }, 4000);
+// }
+
+function getRewardByProbability() {
+  const pool = [];
+
+  rewards.forEach((reward) => {
+    if (reward.toLowerCase() === "carambol") {
+      // peluang 1/36
+      pool.push({ reward, weight: 1 });
+    } else {
+      // sisa peluang
+      pool.push({ reward, weight: 35 / (rewards.length - 1) });
+    }
+  });
+
+  const totalWeight = pool.reduce((sum, r) => sum + r.weight, 0);
+  let rand = Math.random() * totalWeight;
+
+  for (let item of pool) {
+    rand -= item.weight;
+    if (rand <= 0) return item.reward;
+  }
+}
 function spinWheel() {
   const wheel = document.getElementById("wheel");
   const spinResult = document.getElementById("spinResult");
@@ -119,55 +199,42 @@ function spinWheel() {
 
   spinResult.classList.remove("show");
 
-  // spin realistis
-  const extraSpin = Math.floor(Math.random() * 360) + 1440;
-  rotation += extraSpin;
+  // 🎯 hasil berdasarkan probabilitas
+  const selectedReward = getRewardByProbability();
+  const selectedIndex = rewards.indexOf(selectedReward);
+
+  // sudut target
+  const targetDeg = 360 - (selectedIndex * segment + segment / 2);
+
+  // spin visual (SELALU TAMBAH)
+  const extraSpin = 1440 + Math.floor(Math.random() * 360);
+  rotation += extraSpin + targetDeg;
 
   wheel.style.transform = `rotate(${rotation}deg)`;
 
   setTimeout(() => {
-    // derajat akhir wheel
-    const finalDeg = ((rotation % 360) + 360) % 360;
-
-    /**
-     * LOGIKA FINAL:
-     * - Panah di 0° (atas)
-     * - Wheel muter searah jarum jam
-     * - Segment ke-i berada di:
-     *   i * segment  → (i+1)*segment
-     */
-    const index = Math.floor((360 - finalDeg) / segment) % rewards.length;
-
-    spinResult.innerText = rewards[index];
+    spinResult.innerText = selectedReward;
     spinResult.classList.add("show");
 
-    // Fungsi untuk hide dengan animasi
-    const hideNotification = () => {
+    const hide = () => {
       spinResult.classList.add("hide");
       setTimeout(() => {
-        spinResult.classList.remove("show");
-        spinResult.classList.remove("hide");
+        spinResult.classList.remove("show", "hide");
       }, 300);
     };
 
-    // Auto-hide setelah 4 detik
-    const hideTimer = setTimeout(() => {
-      hideNotification();
-    }, 4000);
+    const timer = setTimeout(hide, 4000);
 
-    // Hide saat diklik area lain
-    const closeOnClick = (e) => {
-      // Jangan tutup jika klik di pop notification sendiri atau di wheel
+    document.addEventListener("click", function close(e) {
       if (!spinResult.contains(e.target) && !wheel.contains(e.target)) {
-        hideNotification();
-        clearTimeout(hideTimer);
-        document.removeEventListener("click", closeOnClick);
+        hide();
+        clearTimeout(timer);
+        document.removeEventListener("click", close);
       }
-    };
-
-    document.addEventListener("click", closeOnClick);
+    });
   }, 4000);
 }
+
 
 // ===============================
 // INIT
